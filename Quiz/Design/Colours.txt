@@ -3,3 +3,5 @@ Button 2 will be #42FAE3, or Turquoise
 Button 3 will be #8742FA, or a blueish-violet
 Button 4 Will be #FA4259, or a crimson
 Slider will be Lime
+Background will be #0e3947, or dark slate grey
+Text Will Be #fae342, or gold, sunglow, or golden dream
