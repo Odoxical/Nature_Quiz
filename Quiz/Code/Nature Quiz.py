@@ -1,9 +1,11 @@
 import FreeSimpleGUI as sg
-iterate = 1
-
+will_iterate = 1
+########################################################################################################################################################################################################
+def Save():
+    pass
 ########################################################################################################################################################################################################
 
-questions = {1:{"question":"Which of these animals has the most lethal venom",
+questions = {1:{"question_text":"Which of these animals has the most lethal venom",
                 "type":"four",
                 "answers":["Snake","Spider","JellyFish","Snail"],
                 "answer":"Snail",
@@ -13,7 +15,7 @@ What can be huarenteed, is that they all have potent antivenoms that have been d
 is Conus geographus, otherwise known as the geography cone, or the cone snail. its conotoxin laced harpoon will kill you within 5 hours, if the fact that
 it is a aquatic creature with potent full body paralysis doesnt kill you first."""
                 },
-2:{"question":"Which plant is responsible for the most plant-related poisonings worldwide",
+2:{"question_text":"Which plant is responsible for the most plant-related poisonings worldwide",
    "type":"four",
    "answers":["Deadly Nightshade","Oleander","Castor Bean","Foxglove"],
    "answer":"Oleander",
@@ -22,7 +24,7 @@ cardiac glycosides that disrupt heart rhythm. Even small amounts can cause vomit
 People have been poisoned by eating the leaves, inhaling smoke from burning branches, or even using the twigs as skewers while cooking."""
    },
 
-3:{"question":"There is a plant that is known for using appendages as frag grenades to defend itself from herbivores",
+3:{"question_text":"There is a plant that is known for using appendages as frag grenades to defend itself from herbivores",
    "type":"true_or_false",
    "answers":["True","False"],
    "answer":"False",
@@ -30,7 +32,7 @@ People have been poisoned by eating the leaves, inhaling smoke from burning bran
 This however, is not a self defence strategy, but a strategy to spread its seed. These apendages are seed pods."""
    },
 
-4:{"question":"Which fish is considered the most venomous fish in the world",
+4:{"question_text":"Which fish is considered the most venomous fish in the world",
    "type":"four",
    "answers":["Lionfish","Stonefish","Pufferfish","Stingray"],
    "answer":"Stonefish",
@@ -39,7 +41,7 @@ through sharp dorsal spines capable of delivering an intense dose of toxins that
 and sometimes heart failure. The pain is often described as the worst pain a person can experience."""
    },
 
-5:{"question":"Which plant produces ricin, one of the most deadly natural toxins known",
+5:{"question_text":"Which plant produces ricin, one of the most deadly natural toxins known",
    "type":"four",
    "answers":["Castor Bean Plant","Hemlock","Yew Tree","Monkshood"],
    "answer":"Castor Bean Plant",
@@ -48,7 +50,7 @@ essential proteins, causing organ failure. Just a tiny amount can be lethal if i
 the plant is widely grown because the seeds are also used to make castor oil once the toxin is removed."""
    },
 
-6:{"question":"Which seemingly harmless animal causes the most deaths per year",
+6:{"question_text":"Which seemingly harmless animal causes the most deaths per year",
    "type":"four",
    "answers":["Mosquito","Hippo","Snake","Dog"],
    "answer":"Mosquito",
@@ -60,18 +62,20 @@ tiny size, they are considered the most dangerous animals to humans in terms of 
 
 ########################################################################################################################################################################################################
              
-question = questions[iterate]
-answers = question["answers"]
+current_question = questions[will_iterate]
+answers = current_question["answers"]
+
+menu = [
+[sg.pin(sg.Button("Play Quiz", font=("calibri",25, "bold")))],
+[sg.pin(sg.Text("", key="-MENU-"))],
+[sg.Button("Score", font=("calibri",20, "bold"))],
+[sg.pin(sg.Text("", key="-MENU-"))],
+[sg.pin(sg.Button("leave", font=("calibri",2, "bold")))],
+[sg.pin(sg.Text("", key="-MENU-"))]
+]
+
 four_buttons = [ 
-##[sg.Button("Play Quiz", font=("calibri",25, "bold"))],
-##[sg.Text("", key="-FOUR_QUESTION-")],
-##[sg.Button("Score", font=("calibri",20, "bold"))],
-##[sg.Text("", key="-FOUR_QUESTION-")],
-##[sg.Button("leave", font=("calibri",2, "bold"))],
-##[sg.Text("", key="-FOUR_QUESTION-")],
-
-
-[sg.Text(question["question"], font=("calibri",20,  "bold"))],
+[sg.Text(current_question["question_text"], font=("calibri",20,  "bold"))],
 [sg.Text("", key="Text")],
 [sg.pin(sg.Button(answers[0], font=("calibri", 25), size=(40,5), button_color=('#000000','#B5FA42'))), sg.pin(sg.Button(answers[1], font=("calibri", 25),button_color=('#000000','#42FAE3') , size=(40,5) ))],
 [sg.Text("", key="-FOUR_QUESTION-")],
@@ -80,7 +84,7 @@ four_buttons = [
 
 ]
 true_or_false = [
-    [sg.Text(question["question"], font=("calibri",20,  "bold"))],
+    [sg.Text(current_question["question_text"], font=("calibri",20,  "bold"))],
     [sg.pin(sg.Button(answers[0], font=("calibri", 25), size=(40,10), button_color=('#000000','#B5FA42')))],
     [sg.Text("", key="-TRUE_FALSE-")],
     [sg.pin(sg.Button(answers[1], font=("calibri", 25), size=(40,10), button_color=('#000000','#8742FA')))],
@@ -89,11 +93,12 @@ true_or_false = [
 
 layout = [
     [sg.Column(four_buttons,key = "-BUTTONS-", visible = False)],
-    [sg.Column(true_or_false,key = "-TESTING-", visible = True)]
+    [sg.Column(true_or_false,key = "-TESTING-", visible = False)],
+    [sg.Column(menu, key= "-MENU-", visible = True)]
     ]
 historical_correct_awnsers=0
 correct_awnsers=0
-was_last_awnser_correct=False
+was_last_awnser_correct=None
 
 window = sg.Window("Nature Quiz", layout, background_color='#0e3947')    
     
@@ -103,10 +108,8 @@ running=True
 playing = False
 while running == True:
     event, values = window.read()
-    if event == "Switch to true or false":
-        window["-FOUR_QUESTION-"].update(visible=False)
-    elif event == answers[0]:
-        if answers[0] == question["answer"]:
+    if event == answers[0]:
+        if answers[0] == current_question["answer"]:
             window["-FOUR_QUESTION-"].update("Correct.")
             window["-TRUE_FALSE-"].update("Correct.")
             correct_awnsers+=1
@@ -134,7 +137,7 @@ while running == True:
             window["-FOUR_QUESTION-"].update("incorrect.")
             was_last_awnser_correct=False
     elif event == answers[3]:
-        if answers[3] == question["answer"]:
+        if answers[3] == current_question["answer"]:
             window["-FOUR_QUESTION-"].update("Correct.")
             correct_awnsers+=1
             was_last_awnser_correct=True
@@ -147,11 +150,30 @@ while running == True:
 
 ########################################################################################################################################################################################################
     if event == "Play Quiz":
+        will_iterate=1
         # Update the text when button is clicked
-        window["-FOUR_QUESTION-"].update("This should make it play.")
-        for question in questions.items:
+        window["-FOUR_QUESTION-"].update("This  make it play.")
+        for question in questions.keys():
+            if was_last_awnser_correct is None:
+                if current_question["type"] == "four":
+                    window["-TRUE_FALSE-"].update(visible=False)
+                    window["-FOUR_QUESTION-"].update(visible=True)
+                elif current_question["type"] == "true_or_false":
+                    window["-TRUE_FALSE-"].update(visible=True)
+                    window["-FOUR_QUESTION-"].update(visible=False)
             if was_last_awnser_correct==True:
-                iterate=iterate+1
+                correct_awnsers += 1
+                if current_question["type"] == "four":
+                    window["-TRUE_FALSE-"].update(visible=False)
+                    window["-FOUR_QUESTION-"].update(visible=True)
+                elif current_question["type"] == "true_or_false":
+                    window["-TRUE_FALSE-"].update(visible=True)
+                    window["-FOUR_QUESTION-"].update(visible=False)
+            if was_last_awnser_correct==False:
+                print("Wrong answer")
+                exit()
+                    
+                will_iterate=will_iterate+1
             else:
                 pass
     elif event == "Score":
