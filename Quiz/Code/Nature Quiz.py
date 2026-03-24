@@ -66,7 +66,7 @@ current_question = questions[will_iterate]
 answers = current_question["answers"]
 
 menu = [
-[sg.pin(sg.Button("Play Quiz", font=("calibri",25, "bold")))],
+[sg.pin(sg.Button("Play Quiz", font=("calibri",25, "bold")))], #####
 [sg.pin(sg.Text("", key="-MENU-"))],
 [sg.Button("Score", font=("calibri",20, "bold"))],
 [sg.pin(sg.Text("", key="-MENU-"))],
@@ -92,8 +92,8 @@ true_or_false = [
     ]
 
 layout = [
-    [sg.Column(four_buttons,key = "-BUTTONS-", visible = False)],
-    [sg.Column(true_or_false,key = "-TESTING-", visible = False)],
+    [sg.Column(four_buttons,key = "-FOUR_QUESTION-", visible = False)],
+    [sg.Column(true_or_false,key = "-TESTING-", visible = False)], #####
     [sg.Column(menu, key= "-MENU-", visible = True)]
     ]
 historical_correct_awnsers=0
@@ -149,19 +149,22 @@ while running == True:
 
 
 ########################################################################################################################################################################################################
-    if event == "Play Quiz":
+    if event == "Play Quiz": #####
+      
         will_iterate=1
         # Update the text when button is clicked
         window["-FOUR_QUESTION-"].update("This  make it play.")
         for question in questions.keys():
+            
             if was_last_awnser_correct is None:
+                
                 if current_question["type"] == "four":
-                    window["-TRUE_FALSE-"].update(visible=False)
+                    window["-MENU-"].update(visible=False)
                     window["-FOUR_QUESTION-"].update(visible=True)
                 elif current_question["type"] == "true_or_false":
+                    window["-MENU-"].update(visible=False)
                     window["-TRUE_FALSE-"].update(visible=True)
-                    window["-FOUR_QUESTION-"].update(visible=False)
-            if was_last_awnser_correct==True:
+            elif was_last_awnser_correct==True:
                 correct_awnsers += 1
                 if current_question["type"] == "four":
                     window["-TRUE_FALSE-"].update(visible=False)
@@ -169,7 +172,7 @@ while running == True:
                 elif current_question["type"] == "true_or_false":
                     window["-TRUE_FALSE-"].update(visible=True)
                     window["-FOUR_QUESTION-"].update(visible=False)
-            if was_last_awnser_correct==False:
+            elif was_last_awnser_correct==False:
                 print("Wrong answer")
                 exit()
                     
