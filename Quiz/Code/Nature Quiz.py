@@ -150,20 +150,26 @@ while running == True:
 
 ########################################################################################################################################################################################################
     if event == "Play Quiz": #####
-      
         will_iterate=1
+        print(will_iterate)
         # Update the text when button is clicked
         window["-FOUR_QUESTION-"].update("This  make it play.")
         for question in questions.keys():
-            
+            print(question)
             if was_last_awnser_correct is None:
-                
+                print(was_last_awnser_correct)
+                print(current_question["type"])
                 if current_question["type"] == "four":
+                    print(current_question["type"]+"Four question type")
                     window["-MENU-"].update(visible=False)
                     window["-FOUR_QUESTION-"].update(visible=True)
                 elif current_question["type"] == "true_or_false":
+                    print(current_question["type"]+"True or false question type")
                     window["-MENU-"].update(visible=False)
                     window["-TRUE_FALSE-"].update(visible=True)
+
+
+                    
             elif was_last_awnser_correct==True:
                 correct_awnsers += 1
                 if current_question["type"] == "four":
@@ -172,6 +178,9 @@ while running == True:
                 elif current_question["type"] == "true_or_false":
                     window["-TRUE_FALSE-"].update(visible=True)
                     window["-FOUR_QUESTION-"].update(visible=False)
+
+
+                    
             elif was_last_awnser_correct==False:
                 print("Wrong answer")
                 exit()
@@ -179,10 +188,15 @@ while running == True:
                 will_iterate=will_iterate+1
             else:
                 pass
+
+
+            
     elif event == "Score":
-        window["-FOUR_QUESTION-"].update("This should show your score.")
+        print(answers[0])
+        window["-MENU-"].update("This should show your score.")
+        window["-FOUR_QUESTION-"].update("If this is shown, then the button position of the first shown window ovewrites all others")
     elif event == "leave":
-        window["-FOUR_QUESTION-"].update("this should make you leave.")
+        window["-MENU-"].update("this should make you leave.")
 
 ##    correct_anwsers = 0
 ##    wrong_awnsers = 0
