@@ -192,7 +192,7 @@ while running == True:
 
             
     elif event == "Score":
-        print(answers[0])
+        sg.easy_print("This displays the list of awnsers", answers[0],answers[1],answers[2],answers[3], "This is the current window", window.Key )
         window["-MENU-"].update("This should show your score.")
         window["-FOUR_QUESTION-"].update("If this is shown, then the button position of the first shown window ovewrites all others")
     elif event == "leave":
