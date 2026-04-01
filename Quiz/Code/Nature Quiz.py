@@ -1,8 +1,8 @@
 import FreeSimpleGUI as sg
-will_iterate = 1
 ########################################################################################################################################################################################################
 def Save():
     pass
+
 ########################################################################################################################################################################################################
 
 questions = {1:{"question_text":"Which of these animals has the most lethal venom",
@@ -87,33 +87,32 @@ This tree is called the Dynamite Tree."""
 
 
 ########################################################################################################################################################################################################
-             
+
+will_iterate = 1
+awnser_chosen=False
 current_question = questions[will_iterate]
 answers = current_question["answers"] #I had completely forgot about this bit of code. Thank you, me. or is it just thank me? an intresting conundrum.
+historical_correct_awnsers=0
+correct_awnsers=0
 
 menu = [
 [sg.pin(sg.Button("Play Quiz", font=("calibri",25, "bold")))], #####
-[sg.pin(sg.Text("", key="-PLAY-"))],
 [sg.Button("Score", font=("calibri",20, "bold"))],
-[sg.pin(sg.Text("", key="-SCORE-"))],
 [sg.pin(sg.Button("leave", font=("calibri",2, "bold")))],
-[sg.pin(sg.Text("", key="-LEAVE-"))]
 ]
 
 four_buttons = [ 
 [sg.Text(current_question["question_text"], font=("calibri",20,  "bold"))],
-[sg.Text("", key="Text")],
 [sg.Button("If you're seeing this, the question iteration code broke", key="-BUTTON1-", font=("calibri", 25), size=(40,5), button_color=('#000000','#B5FA42')), sg.Button("If you're seeing this, the question iteration code broke", font=("calibri", 25), key="-BUTTON2-", button_color=('#000000','#42FAE3') , size=(40,5) )],
-[sg.Text("", key="-FOUR_QUESTION-")],
 [sg.Button("If you're seeing this, the question iteration code broke", key="-BUTTON3-", font=("calibri", 25),button_color=('#000000','#8742FA') ,size=(40,5), ), sg.Button("If you're seeing this, the question iteration code broke", font=("calibri", 25), key="-BUTTON4-", size=(40,5), button_color=('#000000','#FA4259') )],
-[sg.Text("", key="-FOUR_QUESTION-")],
+[sg.Text("", key="-FOUR_QUESTION_TRIVIA-",font=("calibri"),size=(80,25)))],
 
 ]
 true_or_false = [
     [sg.Text(current_question["question_text"], font=("calibri",20,  "bold"))],
-    [sg.pin(sg.Button("If you're seeing this, the question iteration code broke", key="-BUTTON1-", font=("calibri", 25), size=(40,10), button_color=('#000000','#B5FA42')))],
-    [sg.pin(sg.Button("If you're seeing this, the question iteration code broke", key="-BUTTON2-", font=("calibri", 25), size=(40,10), button_color=('#000000','#8742FA')))],
-    [sg.Text("", key="-TRUE_FALSE-")]
+    [sg.pin(sg.Button("", key="-TRUE_OR_FALSE_BUTTON1-", font=("calibri", 25), size=(40,5), button_color=('#000000','#B5FA42')))],
+    [sg.pin(sg.Button("", key="-TRUE_OR_FALSE_BUTTON2-", font=("calibri", 25), size=(40,5), button_color=('#000000','#8742FA')))],
+    [sg.Text("", key="-TRUE_FALSE_TRIVIA-")]
     ]
 
 master_layout = [
@@ -121,20 +120,48 @@ master_layout = [
     [sg.Column(true_or_false,key = "-TESTING-", visible = False)], #####
     [sg.Column(menu, key= "-MENU-", visible = True)]
     ]
-historical_correct_awnsers=0
-correct_awnsers=0
-was_last_awnser_correct=None
+
 
 window = sg.Window("Nature Quiz", master_layout, background_color='#0e3947')    
     
 
 ########################################################################################################################################################################################################
-def update_quiz():
-    for i, answer in enumerate(answers):
-        window[f"-BUTTON{i+1}-"].update(answer)
-        
-running=True
-playing = False
+def load():
+    """show the current question"""
+    global current_question, answers
+    current_question = questions[will_iterate]
+    answers = current_question["answers"]
+
+    window["-FOUR_QUESTION_TRIVIA-"].update("")
+    window["-TRUE_FALSE_TRIVIA-"].update("")    
+    
+    if current_question["type"] == "four":
+        window["-FOUR_QUESTION_TEXT-"].update(current_question["question_text"]) """Update the questions text"""
+        for i, answer in enumerate(answers):
+            window[f"-BUTTON{i+1}-"].update(answer)
+        window["-MENU-"].update(visible=False)
+        window["-TRUE_FALSE-"].update(visible=False)
+        window["-FOUR_QUESTION-"].update(visible=True)
+    else:
+        window["-TRUE_FALSE_TEXT-"].update(current_question["question_text"])
+        window["-TRUE_OR_FALSE_BUTTON1-"].update(answers[0])
+        window["-TRUE_OR_FALSE_BUTTON2-"].update(answers[1])
+        window["-MENU-"].update(visible=False)
+        window["-TRUE_FALSE-"].update(visible=True)
+        window["-FOUR_QUESTION-"].update(visible=False)
+
+def on_action(chosen):
+    """check whether awnser was correct, show the trivia, advance the quiz, or end the quiz"""
+    global will_iterate, correct_answers
+
+    if chosen == current_question["true answer"]:
+        correct_answers += 1
+        result = "Correct!"
+    else:
+        result = f"Incorrect! The answer was: {current_question['true answer']}"
+        Save()
+        exit()
+    trivia = ########################
 while running == True:
     event, values = window.read()
     if event == answers[0]:
@@ -178,6 +205,8 @@ while running == True:
 
 
 ########################################################################################################################################################################################################
+running=True
+playing = False
     if event == "Play Quiz": #####
         will_iterate=1
         print(will_iterate)
