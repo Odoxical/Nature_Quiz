@@ -50,16 +50,7 @@ essential proteins, causing organ failure. Just a tiny amount can be lethal if i
 the plant is widely grown because the seeds are also used to make castor oil once the toxin is removed."""
    },
 
-6:{"question_text":"Which seemingly harmless animal causes the most deaths per year",
-   "type":"four",
-   "answers":["Mosquito","Hippo","Snake","Dog"],
-   "true answer":"Mosquito",
-   "trivia":"""Mosquitoes are responsible for more human deaths every year than any other animal on Earth. They spread diseases
-like malaria, dengue fever, Zika, and yellow fever. Malaria alone kills hundreds of thousands of people annually. Despite their
-tiny size, they are considered the most dangerous animals to humans in terms of yearly fatalities."""
-   }
-{
-  7: {
+  6: {
     "question_text": "Carnivorous plants subsist solely on insects.",
     "type": "true_or_false",
     "answers": ["True", "False"],
@@ -68,7 +59,7 @@ tiny size, they are considered the most dangerous animals to humans in terms of 
 They still need sunlight and water."""
   },
 
-  8: {
+  7: {
     "question_text": "Which of these trees is the deadliest?",
     "type": "four",
     "answers": ["Australian Ironwood", "Dragon's Blood", "Strangler Fig", "The Manchineel Tree"],
@@ -83,7 +74,7 @@ your dog depression, it is completely harmless and was even used in medicine.
 Other than being poisonous when eaten or burned, because its Australia, the Australian Ironwood tree is completely harmless."""
   },
 
-  9: {
+  8: {
     "question_text": "True or false, There is a tree that utilises fragmentation grenade-like items to defend itself against herbivores.",
     "type": "true_or_false",
     "answers": ["True", "False"],
@@ -93,7 +84,7 @@ but it doesn't do this as a defence mechanism. It does this to spread its seeds.
 This tree is called the Dynamite Tree."""
   }
 }
-}
+
 
 ########################################################################################################################################################################################################
              
