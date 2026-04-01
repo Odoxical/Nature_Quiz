@@ -8,7 +8,7 @@ def Save():
 questions = {1:{"question_text":"Which of these animals has the most lethal venom",
                 "type":"four",
                 "answers":["Snake","Spider","JellyFish","Snail"],
-                "answer":"Snail",
+                "true answer":"Snail",
                 "trivia":"""The Neurotoxin of the sydney tunnelweb will kill you withen hours, the inland taipans potent mix of neurotoxin,
 hemotoxin, and mytotoxin will kill you within the hour, and the box jellyfishs toxins can kill you in less than five minutes. But
 What can be huarenteed, is that they all have potent antivenoms that have been developed. What has neither a antivenom nor a antidote
@@ -18,7 +18,7 @@ it is a aquatic creature with potent full body paralysis doesnt kill you first."
 2:{"question_text":"Which plant is responsible for the most plant-related poisonings worldwide",
    "type":"four",
    "answers":["Deadly Nightshade","Oleander","Castor Bean","Foxglove"],
-   "answer":"Oleander",
+   "true answer":"Oleander",
    "trivia":"""Oleander is an extremely toxic ornamental shrub found in gardens around the world. Every part of the plant contains
 cardiac glycosides that disrupt heart rhythm. Even small amounts can cause vomiting, seizures, and fatal heart arrhythmias.
 People have been poisoned by eating the leaves, inhaling smoke from burning branches, or even using the twigs as skewers while cooking."""
@@ -27,7 +27,7 @@ People have been poisoned by eating the leaves, inhaling smoke from burning bran
 3:{"question_text":"There is a plant that is known for using appendages as frag grenades to defend itself from herbivores",
    "type":"true_or_false",
    "answers":["True","False"],
-   "answer":"False",
+   "true answer":"False",
    "trivia":"""There is a plant, coloquially called the dynamite tree, that occasionly releases appendages that relase particulates in all directions at 300+ Kph.
 This however, is not a self defence strategy, but a strategy to spread its seed. These apendages are seed pods."""
    },
@@ -35,7 +35,7 @@ This however, is not a self defence strategy, but a strategy to spread its seed.
 4:{"question_text":"Which fish is considered the most venomous fish in the world",
    "type":"four",
    "answers":["Lionfish","Stonefish","Pufferfish","Stingray"],
-   "answer":"Stonefish",
+   "true answer":"Stonefish",
    "trivia":"""Stonefish are masters of camouflage and look exactly like rocks on the seafloor. When stepped on, they inject venom
 through sharp dorsal spines capable of delivering an intense dose of toxins that cause extreme pain, tissue death, shock,
 and sometimes heart failure. The pain is often described as the worst pain a person can experience."""
@@ -44,7 +44,7 @@ and sometimes heart failure. The pain is often described as the worst pain a per
 5:{"question_text":"Which plant produces ricin, one of the most deadly natural toxins known",
    "type":"four",
    "answers":["Castor Bean Plant","Hemlock","Yew Tree","Monkshood"],
-   "answer":"Castor Bean Plant",
+   "true answer":"Castor Bean Plant",
    "trivia":"""The castor bean plant produces ricin inside its seeds. Ricin is a protein toxin that stops cells from producing
 essential proteins, causing organ failure. Just a tiny amount can be lethal if inhaled, ingested, or injected. Despite this,
 the plant is widely grown because the seeds are also used to make castor oil once the toxin is removed."""
@@ -53,45 +53,79 @@ the plant is widely grown because the seeds are also used to make castor oil onc
 6:{"question_text":"Which seemingly harmless animal causes the most deaths per year",
    "type":"four",
    "answers":["Mosquito","Hippo","Snake","Dog"],
-   "answer":"Mosquito",
+   "true answer":"Mosquito",
    "trivia":"""Mosquitoes are responsible for more human deaths every year than any other animal on Earth. They spread diseases
 like malaria, dengue fever, Zika, and yellow fever. Malaria alone kills hundreds of thousands of people annually. Despite their
 tiny size, they are considered the most dangerous animals to humans in terms of yearly fatalities."""
    }
+{
+  7: {
+    "question_text": "Carnivorous plants subsist solely on insects.",
+    "type": "true_or_false",
+    "answers": ["True", "False"],
+    "true answer": "False",
+    "trivia": """Carnivorous plants only get nitrogen, phosphorus, and potassium from insects.
+They still need sunlight and water."""
+  },
+
+  8: {
+    "question_text": "Which of these trees is the deadliest?",
+    "type": "four",
+    "answers": ["Australian Ironwood", "Dragon's Blood", "Strangler Fig", "The Manchineel Tree"],
+    "true answer": "The Manchineel Tree",
+    "trivia": """The Manchineel tree, also known as the tree of death, is deadly in every single piece. This is due to
+its sap, which causes second and third degree burns, intense pain, blisters, dermatitis, blindness, lung damage, and more.
+This sap is found in every part of the tree, which is even worse because this tree looks no different than any other
+tropical american tree. This tree is also illegal to cut down because it is endangered.
+The Strangler Fig can only strangle other trees. It is harmless to animal life.
+The Dragon's Blood tree has thick, crimson sap, and berries that are commonly described as fleshy. Other than giving
+your dog depression, it is completely harmless and was even used in medicine.
+Other than being poisonous when eaten or burned, because its Australia, the Australian Ironwood tree is completely harmless."""
+  },
+
+  9: {
+    "question_text": "True or false, There is a tree that utilises fragmentation grenade-like items to defend itself against herbivores.",
+    "type": "true_or_false",
+    "answers": ["True", "False"],
+    "true answer": "False",
+    "trivia": """False. There is a plant that uses an item that explodes and sends detritus at 240 kilometres per hour,
+but it doesn't do this as a defence mechanism. It does this to spread its seeds.
+This tree is called the Dynamite Tree."""
+  }
+}
 }
 
 ########################################################################################################################################################################################################
              
 current_question = questions[will_iterate]
-answers = current_question["answers"]
+answers = current_question["answers"] #I had completely forgot about this bit of code. Thank you, me. or is it just thank me? an intresting conundrum.
 
 menu = [
 [sg.pin(sg.Button("Play Quiz", font=("calibri",25, "bold")))], #####
-[sg.pin(sg.Text("", key="-MENU-"))],
+[sg.pin(sg.Text("", key="-PLAY-"))],
 [sg.Button("Score", font=("calibri",20, "bold"))],
-[sg.pin(sg.Text("", key="-MENU-"))],
+[sg.pin(sg.Text("", key="-SCORE-"))],
 [sg.pin(sg.Button("leave", font=("calibri",2, "bold")))],
-[sg.pin(sg.Text("", key="-MENU-"))]
+[sg.pin(sg.Text("", key="-LEAVE-"))]
 ]
 
 four_buttons = [ 
 [sg.Text(current_question["question_text"], font=("calibri",20,  "bold"))],
 [sg.Text("", key="Text")],
-[sg.pin(sg.Button(answers[0], font=("calibri", 25), size=(40,5), button_color=('#000000','#B5FA42'))), sg.pin(sg.Button(answers[1], font=("calibri", 25),button_color=('#000000','#42FAE3') , size=(40,5) ))],
+[sg.Button("If you're seeing this, the question iteration code broke", key="-BUTTON1-", font=("calibri", 25), size=(40,5), button_color=('#000000','#B5FA42')), sg.Button("If you're seeing this, the question iteration code broke", font=("calibri", 25), key="-BUTTON2-", button_color=('#000000','#42FAE3') , size=(40,5) )],
 [sg.Text("", key="-FOUR_QUESTION-")],
-[sg.pin(sg.Button(answers[2], font=("calibri", 25),button_color=('#000000','#8742FA') ,size=(40,5), )), sg.pin(sg.Button(answers[3], font=("calibri", 25), size=(40,5), button_color=('#000000','#FA4259') ))],
+[sg.Button("If you're seeing this, the question iteration code broke", key="-BUTTON3-", font=("calibri", 25),button_color=('#000000','#8742FA') ,size=(40,5), ), sg.Button("If you're seeing this, the question iteration code broke", font=("calibri", 25), key="-BUTTON4-", size=(40,5), button_color=('#000000','#FA4259') )],
 [sg.Text("", key="-FOUR_QUESTION-")],
 
 ]
 true_or_false = [
     [sg.Text(current_question["question_text"], font=("calibri",20,  "bold"))],
-    [sg.pin(sg.Button(answers[0], font=("calibri", 25), size=(40,10), button_color=('#000000','#B5FA42')))],
-    [sg.Text("", key="-TRUE_FALSE-")],
-    [sg.pin(sg.Button(answers[1], font=("calibri", 25), size=(40,10), button_color=('#000000','#8742FA')))],
+    [sg.pin(sg.Button("If you're seeing this, the question iteration code broke", key="-BUTTON1-", font=("calibri", 25), size=(40,10), button_color=('#000000','#B5FA42')))],
+    [sg.pin(sg.Button("If you're seeing this, the question iteration code broke", key="-BUTTON2-", font=("calibri", 25), size=(40,10), button_color=('#000000','#8742FA')))],
     [sg.Text("", key="-TRUE_FALSE-")]
     ]
 
-layout = [
+master_layout = [
     [sg.Column(four_buttons,key = "-FOUR_QUESTION-", visible = False)],
     [sg.Column(true_or_false,key = "-TESTING-", visible = False)], #####
     [sg.Column(menu, key= "-MENU-", visible = True)]
@@ -100,16 +134,20 @@ historical_correct_awnsers=0
 correct_awnsers=0
 was_last_awnser_correct=None
 
-window = sg.Window("Nature Quiz", layout, background_color='#0e3947')    
+window = sg.Window("Nature Quiz", master_layout, background_color='#0e3947')    
     
 
 ########################################################################################################################################################################################################
+def update_quiz():
+    for i, answer in enumerate(answers):
+        window[f"-BUTTON{i+1}-"].update(answer)
+        
 running=True
 playing = False
 while running == True:
     event, values = window.read()
     if event == answers[0]:
-        if answers[0] == current_question["answer"]:
+        if answers[0] == current_question["true answer"]:
             window["-FOUR_QUESTION-"].update("Correct.")
             window["-TRUE_FALSE-"].update("Correct.")
             correct_awnsers+=1
@@ -119,7 +157,7 @@ while running == True:
             window["-TRUE_FALSE-"].update("incorrect.")
             was_last_awnser_correct=False
     elif event == answers[1]:
-        if answers[1] == "answer":
+        if answers[1] == current_question["true answer"]:
             window["-TRUE_FALSE-"].update("Correct.")
             window["-FOUR_QUESTION-"].update("Correct.")
             correct_awnsers+=1
@@ -129,7 +167,7 @@ while running == True:
             window["-TRUE_FALSE-"].update("incorrect.")
             was_last_awnser_correct=False
     elif event == answers[2]:
-        if answers[2] == "answer":
+        if answers[2] == current_question["true answer"]:
             window["-FOUR_QUESTION-"].update("Correct.")
             correct_awnsers+=1
             was_last_awnser_correct=True
@@ -137,7 +175,7 @@ while running == True:
             window["-FOUR_QUESTION-"].update("incorrect.")
             was_last_awnser_correct=False
     elif event == answers[3]:
-        if answers[3] == current_question["answer"]:
+        if answers[3] == current_question["true answer"]:
             window["-FOUR_QUESTION-"].update("Correct.")
             correct_awnsers+=1
             was_last_awnser_correct=True
@@ -156,6 +194,7 @@ while running == True:
         window["-FOUR_QUESTION-"].update("This  make it play.")
         for question in questions.keys():
             print(question)
+            update_quiz()
             if was_last_awnser_correct is None:
                 print(was_last_awnser_correct)
                 print(current_question["type"])
@@ -192,7 +231,8 @@ while running == True:
 
             
     elif event == "Score":
-        sg.easy_print("This displays the list of awnsers", answers[0],answers[1],answers[2],answers[3], "This is the current window", window.Key )
+        for possible_answer in answers:
+            sg.easy_print("This displays the list of awnsers", possible_answer)
         window["-MENU-"].update("This should show your score.")
         window["-FOUR_QUESTION-"].update("If this is shown, then the button position of the first shown window ovewrites all others")
     elif event == "leave":
