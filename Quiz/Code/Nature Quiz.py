@@ -6,7 +6,7 @@ def save(correct_answers,historical_correct_answers):
         if correct_answers>historical_correct_answers:
             historical_correct_answers=correct_answers
             with open("highscore.txt","w") as file:
-                file.write()
+                file.write(str(historical_correct_answers))
             return historical_correct_answers
         else:
             pass
@@ -24,92 +24,17 @@ def load_score():
             return 0
             print("But nothing came")
 ########################################################################################################################################################################################################
+questions = {}
 try:
     with open("questions.json","r") as file:
-        questions = json.load(file)
+        raw_data = json.load(file)
+        for key, value in raw_data.items():
+            questions[int(key)] = value
+            
 except json.JSONDecodeError:
     sg.popup(f"I am sorry, but the list of questions has been corrupted", title="Final Score", background_color='#0e3947')
 except FileNotFoundError:
     sg.popup(f"I am sorry but something has gone very wrong. the list of questions cannot be found", title="Final Score", background_color='#0e3947')
-questions = {1:{"question_text":"Which of these animals has the most lethal venom",
-                "type":"four",
-                "answers":["Snake","Spider","JellyFish","Snail"],
-                "true answer":"Snail",
-                "trivia":"""The Neurotoxin of the sydney tunnelweb will kill you withen hours, the inland taipans potent mix of neurotoxin,
-hemotoxin, and mytotoxin will kill you within the hour, and the box jellyfishs toxins can kill you in less than five minutes. But
-What can be huarenteed, is that they all have potent antivenoms that have been developed. What has neither a antivenom nor a antidote
-is Conus geographus, otherwise known as the geography cone, or the cone snail. its conotoxin laced harpoon will kill you within 5 hours, if the fact that
-it is a aquatic creature with potent full body paralysis doesnt kill you first."""
-                },
-2:{"question_text":"Which plant is responsible for the most plant-related poisonings worldwide",
-   "type":"four",
-   "answers":["Deadly Nightshade","Oleander","Castor Bean","Foxglove"],
-   "true answer":"Oleander",
-   "trivia":"""Oleander is an extremely toxic ornamental shrub found in gardens around the world. Every part of the plant contains
-cardiac glycosides that disrupt heart rhythm. Even small amounts can cause vomiting, seizures, and fatal heart arrhythmias.
-People have been poisoned by eating the leaves, inhaling smoke from burning branches, or even using the twigs as skewers while cooking."""
-   },
-
-3:{"question_text":"There is a plant that is known for using appendages as frag grenades to defend itself from herbivores",
-   "type":"true_or_false",
-   "answers":["True","False"],
-   "true answer":"False",
-   "trivia":"""There is a plant, coloquially called the dynamite tree, that occasionly releases appendages that relase particulates in all directions at 300+ Kph.
-This however, is not a self defence strategy, but a strategy to spread its seed. These apendages are seed pods."""
-   },
-
-4:{"question_text":"Which fish is considered the most venomous fish in the world",
-   "type":"four",
-   "answers":["Lionfish","Stonefish","Pufferfish","Stingray"],
-   "true answer":"Stonefish",
-   "trivia":"""Stonefish are masters of camouflage and look exactly like rocks on the seafloor. When stepped on, they inject venom
-through sharp dorsal spines capable of delivering an intense dose of toxins that cause extreme pain, tissue death, shock,
-and sometimes heart failure. The pain is often described as the worst pain a person can experience."""
-   },
-
-5:{"question_text":"Which plant produces ricin, one of the most deadly natural toxins known",
-   "type":"four",
-   "answers":["Castor Bean Plant","Hemlock","Yew Tree","Monkshood"],
-   "true answer":"Castor Bean Plant",
-   "trivia":"""The castor bean plant produces ricin inside its seeds. Ricin is a protein toxin that stops cells from producing
-essential proteins, causing organ failure. Just a tiny amount can be lethal if inhaled, ingested, or injected. Despite this,
-the plant is widely grown because the seeds are also used to make castor oil once the toxin is removed."""
-   },
-
-  6: {
-    "question_text": "Carnivorous plants subsist solely on insects.",
-    "type": "true_or_false",
-    "answers": ["True", "False"],
-    "true answer": "False",
-    "trivia": """Carnivorous plants only get nitrogen, phosphorus, and potassium from insects.
-They still need sunlight and water."""
-  },
-
-  7: {
-    "question_text": "Which of these trees is the deadliest?",
-    "type": "four",
-    "answers": ["Australian Ironwood", "Dragon's Blood", "Strangler Fig", "The Manchineel Tree"],
-    "true answer": "The Manchineel Tree",
-    "trivia": """The Manchineel tree, also known as the tree of death, is deadly in every single piece. This is due to
-its sap, which causes second and third degree burns, intense pain, blisters, dermatitis, blindness, lung damage, and more.
-This sap is found in every part of the tree, which is even worse because this tree looks no different than any other
-tropical american tree. This tree is also illegal to cut down because it is endangered.
-The Strangler Fig can only strangle other trees. It is harmless to animal life.
-The Dragon's Blood tree has thick, crimson sap, and berries that are commonly described as fleshy. Other than giving
-your dog depression, it is completely harmless and was even used in medicine.
-Other than being poisonous when eaten or burned, because its Australia, the Australian Ironwood tree is completely harmless."""
-  },
-
-  8: {
-    "question_text": "True or false, There is a tree that utilises fragmentation grenade-like items to defend itself against herbivores.",
-    "type": "true_or_false",
-    "answers": ["True", "False"],
-    "true answer": "False",
-    "trivia": """False. There is a plant that uses an item that explodes and sends detritus at 240 kilometres per hour,
-but it doesn't do this as a defence mechanism. It does this to spread its seeds.
-This tree is called the Dynamite Tree."""
-  }
-}
 
 
 ########################################################################################################################################################################################################
@@ -171,14 +96,16 @@ def load():
             window[f"-BUTTON{i+1}-"].update(answer)
         window["-MENU-"].update(visible=False)
         window["-TRUE_FALSE-"].update(visible=False)
+        window.move_to_center()
         window["-FOUR_QUESTION-"].update(visible=True)
     else:
         window["-TRUE_FALSE_TEXT-"].update(current_question["question_text"])
         window["-TRUE_OR_FALSE_BUTTON1-"].update(answers[0])
         window["-TRUE_OR_FALSE_BUTTON2-"].update(answers[1])
         window["-MENU-"].update(visible=False)
-        window["-TRUE_FALSE-"].update(visible=True)
         window["-FOUR_QUESTION-"].update(visible=False)
+        window.move_to_center()
+        window["-TRUE_FALSE-"].update(visible=True)
 
 def on_action(chosen):
     """check whether answer was correct, show the trivia, advance the quiz, or end the quiz"""

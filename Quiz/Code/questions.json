@@ -1,79 +1,89 @@
-questions = {1:{"question_text":"Which of these animals has the most lethal venom",
-                "type":"four",
-                "answers":["Snake","Spider","JellyFish","Snail"],
-                "true answer":"Snail",
-                "trivia":"""The Neurotoxin of the sydney tunnelweb will kill you withen hours, the inland taipans potent mix of neurotoxin,
-hemotoxin, and mytotoxin will kill you within the hour, and the box jellyfishs toxins can kill you in less than five minutes. But
-What can be huarenteed, is that they all have potent antivenoms that have been developed. What has neither a antivenom nor a antidote
-is Conus geographus, otherwise known as the geography cone, or the cone snail. its conotoxin laced harpoon will kill you within 5 hours, if the fact that
-it is a aquatic creature with potent full body paralysis doesnt kill you first."""
+{"1":{"question_text":"Which of these animals has the most lethal venom",
+   "type":"four",
+   "answers":["Snake","Spider","JellyFish","Snail"],
+   "true answer":"Snail",
+   "trivia":"The Neurotoxin of the sydney tunnelweb will kill you withen hours, the inland taipans potent mix of neurotoxin, hemotoxin, and mytotoxin will kill you within the hour, and the box jellyfishs toxins can kill you in less than five minutes. But What can be guarenteed, is that they all have potent antivenoms that have been developed. What has neither a antivenom nor a antidote is Conus geographus, otherwise known as the geography cone, or the cone snail. its conotoxin laced harpoon will kill you within 5 hours, if the fact that it is an aquatic creature with potent full body paralysis doesnt kill you first."
                 },
-2:{"question_text":"Which plant is responsible for the most plant-related poisonings worldwide",
+"2":{"question_text":"Which plant is responsible for the most plant-related poisonings worldwide",
    "type":"four",
    "answers":["Deadly Nightshade","Oleander","Castor Bean","Foxglove"],
    "true answer":"Oleander",
-   "trivia":"""Oleander is an extremely toxic ornamental shrub found in gardens around the world. Every part of the plant contains
-cardiac glycosides that disrupt heart rhythm. Even small amounts can cause vomiting, seizures, and fatal heart arrhythmias.
-People have been poisoned by eating the leaves, inhaling smoke from burning branches, or even using the twigs as skewers while cooking."""
+   "trivia":"Oleander is an extremely toxic ornamental shrub found in gardens around the world. Every part of the plant contains cardiac glycosides that disrupt heart rhythm. Even small amounts can cause vomiting, seizures, and fatal heart arrhythmias. People have been poisoned by eating the leaves, inhaling smoke from burning branches, or even using the twigs as skewers while cooking."
    },
 
-3:{"question_text":"There is a plant that is known for using appendages as frag grenades to defend itself from herbivores",
+"3": {
+    "question_text": "There is an animal that defends itself with biological napalm",
+    "type": "true_or_false",
+    "answers": ["True", "False"],
+    "true answer": "False",
+    "trivia": "Although there are some species and clades that come close, like the Bombardier beetle, they dont eject the long lasting liquid fire that is napalm. Napalm is roughly 1200 degrees C, The bombardier beetle's secretion can only reach 100 degrees C."
+  },
+
+"4":{"question_text":"There is a plant that is known for using appendages as frag grenades to defend itself from herbivores",
    "type":"true_or_false",
    "answers":["True","False"],
    "true answer":"False",
-   "trivia":"""There is a plant, coloquially called the dynamite tree, that occasionly releases appendages that relase particulates in all directions at 300+ Kph.
-This however, is not a self defence strategy, but a strategy to spread its seed. These apendages are seed pods."""
+   "trivia":"There is a plant, colloquially called the dynamite tree, that occasionally releases apendages that relase particulates in all directions at 300+ Kph. \n This however, is not a self defence strategy, but a strategy to spread its seed. These apendages are seed pods."
    },
 
-4:{"question_text":"Which fish is considered the most venomous fish in the world",
+"5":{"question_text":"Which fish is considered the most venomous fish in the world",
    "type":"four",
    "answers":["Lionfish","Stonefish","Pufferfish","Stingray"],
    "true answer":"Stonefish",
-   "trivia":"""Stonefish are masters of camouflage and look exactly like rocks on the seafloor. When stepped on, they inject venom
-through sharp dorsal spines capable of delivering an intense dose of toxins that cause extreme pain, tissue death, shock,
-and sometimes heart failure. The pain is often described as the worst pain a person can experience."""
+   "trivia":"Stonefish are masters of camouflage and look exactly like rocks on the seafloor. When stepped on, they inject venom through sharp dorsal spines capable of delivering an intense dose of toxins that cause extreme pain, tissue death, shock, and sometimes heart failure. The pain is often described as the worst pain a person can experience."
    },
 
-5:{"question_text":"Which plant produces ricin, one of the most deadly natural toxins known",
+"6":{"question_text":"Which plant produces ricin, one of the most deadly natural toxins known",
    "type":"four",
    "answers":["Castor Bean Plant","Hemlock","Yew Tree","Monkshood"],
    "true answer":"Castor Bean Plant",
-   "trivia":"""The castor bean plant produces ricin inside its seeds. Ricin is a protein toxin that stops cells from producing
-essential proteins, causing organ failure. Just a tiny amount can be lethal if inhaled, ingested, or injected. Despite this,
-the plant is widely grown because the seeds are also used to make castor oil once the toxin is removed."""
+   "trivia":"The castor bean plant produces ricin inside its seeds. Ricin is a protein toxin that stops cells from producing essential proteins, causing organ failure. Just a tiny amount can be lethal if inhaled, ingested, or injected. Despite this, the plant is widely grown because the seeds are also used to make castor oil once the toxin is removed."
    },
 
-  6: {
+"7": {
+    "question_text": "There is no known animal that defends itself by exploding.",
+    "type": "true_or_false",
+    "answers": ["True", "False"],
+    "true answer": "True",
+    "trivia": "There is a species of bug known as Neocapritermes taracua, or the Kamikaze Termite. They store hydroquinones and an enzyme called laccase BP76 in cuticular pouches which, when the colony is threatened and the termite is old and near \n the threat, will rupture, causing a highly toxic explosion which, while inconclusivly toxic to humans, is incredibly lethal to ants. There is also a species of ant that practices autothysis."
+  },
+
+"8": {
     "question_text": "Carnivorous plants subsist solely on insects.",
     "type": "true_or_false",
     "answers": ["True", "False"],
     "true answer": "False",
-    "trivia": """Carnivorous plants only get nitrogen, phosphorus, and potassium from insects.
-They still need sunlight and water."""
+    "trivia": "Carnivorous plants only get nitrogen, phosphorus, and potassium from insects. They still need sunlight and water."
   },
 
-  7: {
+"9": {
     "question_text": "Which of these trees is the deadliest?",
     "type": "four",
     "answers": ["Australian Ironwood", "Dragon's Blood", "Strangler Fig", "The Manchineel Tree"],
     "true answer": "The Manchineel Tree",
-    "trivia": """The Manchineel tree, also known as the tree of death, is deadly in every single piece. This is due to
-its sap, which causes second and third degree burns, intense pain, blisters, dermatitis, blindness, lung damage, and more.
-This sap is found in every part of the tree, which is even worse because this tree looks no different than any other
-tropical american tree. This tree is also illegal to cut down because it is endangered.
-The Strangler Fig can only strangle other trees. It is harmless to animal life.
-The Dragon's Blood tree has thick, crimson sap, and berries that are commonly described as fleshy. Other than giving
-your dog depression, it is completely harmless and was even used in medicine.
-Other than being poisonous when eaten or burned, because its Australia, the Australian Ironwood tree is completely harmless."""
+    "trivia": "The Manchineel tree, also known as the tree of death, is deadly in every single piece. This is due to its sap, which causes second and third degree burns, intense pain, blisters, dermatitis, blindness, lung damage, and more. This sap is found in every part of the tree, which is even worse because this tree looks no different than any other tropical american tree. This tree is also illegal to cut down because it is endangered. The Strangler Fig can only strangle other trees. It is harmless to animal life. The Dragon's Blood tree has thick, crimson sap, and berries that are commonly described as fleshy. Other than giving your dog depression, it is completely harmless and was even used in medicine. Other than being poisonous when eaten or burned, because its Australia, the Australian Ironwood tree is completely harmless."
   },
-
-  8: {
-    "question_text": "True or false, There is a tree that utilises fragmentation grenade-like items to defend itself against herbivores.",
+"10": {
+    "question_text": "There is a tree known as the Gympie-Gympie tree, which has a leaf that someone once used as toilet paper.",
     "type": "true_or_false",
     "answers": ["True", "False"],
-    "true answer": "False",
-    "trivia": """False. There is a plant that uses an item that explodes and sends detritus at 240 kilometres per hour,
-but it doesn't do this as a defence mechanism. It does this to spread its seeds.
-This tree is called the Dynamite Tree."""
+    "true answer": "True",
+    "trivia": "Dendrocnide moroides, the Gympie-Gympie, is an Australian stinging tree covered in hollow silica needles coated in a neurotoxin called moroidin. The sting is described as being sprayed with hot acid and electrocuted simultaneously. \n The pain can persist for months or years, and some victims report it returning decades later when the affected area gets wet or cold. A WWII-era officer allegedly used the leaves as toilet paper during a field survey. \n The plant has also been linked to the deaths of horses, dogs, and at least one reported human suicide. The needles are fine enough to be nearly invisible and lodge so deeply into skin that they cannot be washed off."
+  },
+
+"11": {
+    "question_text": "There are animals that, when threatened, can shoot jets of blood from their own eyes.",
+    "type": "true_or_false",
+    "answers": ["True", "False"],
+    "true answer": "True",
+    "trivia": "Horned lizards (genus Phrynosoma) practice a defense called ocular autohemorrhaging. By constricting specific blood vessels leaving their head, they build up pressure until blood vessels in their eyelids rupture, launching a stream of blood up to five feet \n at a threat. The blood contains chemical compounds that are specifically and intensely repulsive to canines, like coyotes and wolves. The lizard loses up to a third of its total blood supply in a single defense and can repeat the trick \n multiple times before needing to recover."
+  },
+
+"12": {
+    "question_text": "Which of these types of creatures is known to spit oil?",
+    "type": "four",
+    "answers": ["Bird", "Fish", "Reptile", "Bovine"],
+    "true answer": "Bird",
+    "trivia": "the Northern Fouler is a bird that is known for spitting oil up to distances up to ten feet. It looks extremely similar to any common gull and can be found from Finland to New Zealand. The oil that they spit is a mixture of wax esters, triglycerides, diacyl glyerol ethers, and many other trace compounds. It is incredibly sticky, smelly, water insoluble, and vomitted at anything the bird deems a threat, much to the behest of researchers."
   }
 }
