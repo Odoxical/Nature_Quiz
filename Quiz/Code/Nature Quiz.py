@@ -1,8 +1,9 @@
 import FreeSimpleGUI as sg
 ########################################################################################################################################################################################################
-def Save():
+def save():
     pass
-
+def load_score():
+    pass
 ########################################################################################################################################################################################################
 
 questions = {1:{"question_text":"Which of these animals has the most lethal venom",
@@ -89,36 +90,38 @@ This tree is called the Dynamite Tree."""
 ########################################################################################################################################################################################################
 
 will_iterate = 1
-awnser_chosen=False
+answer_chosen=False
 current_question = questions[will_iterate]
 answers = current_question["answers"] #I had completely forgot about this bit of code. Thank you, me. or is it just thank me? an intresting conundrum.
-historical_correct_awnsers=0
-correct_awnsers=0
+historical_correct_answers=0
+correct_answers=0
 
 menu = [
-[sg.pin(sg.Button("Play Quiz", font=("calibri",25, "bold")))], #####
+[sg.pin(sg.Button("Play Quiz", font=("calibri",25, "bold")))], 
 [sg.Button("Score", font=("calibri",20, "bold"))],
 [sg.pin(sg.Button("leave", font=("calibri",2, "bold")))],
 ]
 
 four_buttons = [ 
-[sg.Text(current_question["question_text"], font=("calibri",20,  "bold"))],
-[sg.Button("If you're seeing this, the question iteration code broke", key="-BUTTON1-", font=("calibri", 25), size=(40,5), button_color=('#000000','#B5FA42')), sg.Button("If you're seeing this, the question iteration code broke", font=("calibri", 25), key="-BUTTON2-", button_color=('#000000','#42FAE3') , size=(40,5) )],
-[sg.Button("If you're seeing this, the question iteration code broke", key="-BUTTON3-", font=("calibri", 25),button_color=('#000000','#8742FA') ,size=(40,5), ), sg.Button("If you're seeing this, the question iteration code broke", font=("calibri", 25), key="-BUTTON4-", size=(40,5), button_color=('#000000','#FA4259') )],
-[sg.Text("", key="-FOUR_QUESTION_TRIVIA-",font=("calibri"),size=(80,25))],
+[sg.Text(current_question["question_text"], font=("calibri",20,  "bold"), key = "-FOUR_QUESTION_TEXT-")],
+[sg.Button("If you're seeing this, the question iteration code broke", key="-BUTTON1-", font=("calibri", 25), size=(40,5), button_color=('#000000','#B5FA42')),
+sg.Button("If you're seeing this, the question iteration code broke", font=("calibri", 25), key="-BUTTON2-", button_color=('#000000','#42FAE3') , size=(40,5))],
+[sg.Button("If you're seeing this, the question iteration code broke", key="-BUTTON3-", font=("calibri", 25),button_color=('#000000','#8742FA') ,size=(40,5)),
+sg.Button("If you're seeing this, the question iteration code broke", font=("calibri", 25), key="-BUTTON4-", size=(40,5), button_color=('#000000','#FA4259'))],
+[sg.Text("", key="-FOUR_QUESTION_TRIVIA-",font=("calibri"),size=(80,12))],
 
 ]
 true_or_false = [
-    [sg.Text(current_question["question_text"], font=("calibri",20,  "bold"))],
-    [sg.pin(sg.Button("", key="-TRUE_OR_FALSE_BUTTON1-", font=("calibri", 25), size=(40,5), button_color=('#000000','#B5FA42')))],
-    [sg.pin(sg.Button("", key="-TRUE_OR_FALSE_BUTTON2-", font=("calibri", 25), size=(40,5), button_color=('#000000','#8742FA')))],
+    [sg.Text(current_question["question_text"], font=("calibri",20,  "bold"), key = "-TRUE_FALSE_TEXT-")],
+    [sg.Button("", key="-TRUE_OR_FALSE_BUTTON1-", font=("calibri", 25), size=(40,15), button_color=('#000000','#B5FA42')),
+    sg.Button("", key="-TRUE_OR_FALSE_BUTTON2-", font=("calibri", 25), size=(40,15), button_color=('#000000','#8742FA'))],
     [sg.Text("", key="-TRUE_FALSE_TRIVIA-")]
     ]
 
 master_layout = [
-    [sg.Column(four_buttons,key = "-FOUR_QUESTION-", visible = False)],
-    [sg.Column(true_or_false,key = "-TESTING-", visible = False)], #####
-    [sg.Column(menu, key= "-MENU-", visible = True)]
+    [sg.Column(four_buttons,key = "-FOUR_QUESTION-", visible = False),
+    sg.Column(true_or_false,key = "-TRUE_FALSE-", visible = False), #####
+    sg.Column(menu, key= "-MENU-", visible = True)]
     ]
 
 
@@ -145,14 +148,12 @@ def load():
         window["-FOUR_QUESTION-"].update(visible=True)
     else:
         window["-TRUE_FALSE_TEXT-"].update(current_question["question_text"])
-        window["-TRUE_OR_FALSE_BUTTON1-"].update(answers[0])
-        window["-TRUE_OR_FALSE_BUTTON2-"].update(answers[1])
         window["-MENU-"].update(visible=False)
         window["-TRUE_FALSE-"].update(visible=True)
         window["-FOUR_QUESTION-"].update(visible=False)
 
 def on_action(chosen):
-    """check whether awnser was correct, show the trivia, advance the quiz, or end the quiz"""
+    """check whether answer was correct, show the trivia, advance the quiz, or end the quiz"""
     global will_iterate, correct_answers
 
     if chosen == current_question["true answer"]:
@@ -160,8 +161,7 @@ def on_action(chosen):
         result = "Correct!"
     else:
         result = f"Incorrect! The answer was: {current_question['true answer']}"
-        save()
-        exit()
+        pass
     trivia = f"{result}\n\n{current_question['trivia']}"
     if current_question["type"] == "four":
         window["-FOUR_QUESTION_TRIVIA-"].update(trivia)
@@ -181,14 +181,14 @@ while running == True:
     elif event == "Play Quiz": #####
         will_iterate=1
         correct_answers = 0
-        waiting_for_next = False
+        waiting = False
         load()
         print(will_iterate)
     elif event == "Score":
         load_score()
-    elif event in ["-BUTTON1-", "-BUTTON2-", "-BUTTON3-", "-BUTTON4-"] and not waiting_for_next:
+    elif event in ["-BUTTON1-", "-BUTTON2-", "-BUTTON3-", "-BUTTON4-"] and not waiting:
         index = int(event[-2]) -1
-        handle_answer(answers[index])
+        on_action(answers[index])
         waiting = True
 
     elif event in ["-TRUE_OR_FALSE_BUTTON1-", "-TRUE_OR_FALSE_BUTTON2-"] and not waiting:
@@ -197,12 +197,12 @@ while running == True:
         else:
             index = 1
         chosen = answers[index]
-        handle_answer(chosen)
+        on_action(chosen)
         waiting = True
 
     elif waiting == True:
         will_iterate += 1
-        waiting_for_next = False
+        waiting = False
         if will_iterate <= len(questions):
             load()
         else:
