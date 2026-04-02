@@ -105,7 +105,7 @@ four_buttons = [
 [sg.Text(current_question["question_text"], font=("calibri",20,  "bold"))],
 [sg.Button("If you're seeing this, the question iteration code broke", key="-BUTTON1-", font=("calibri", 25), size=(40,5), button_color=('#000000','#B5FA42')), sg.Button("If you're seeing this, the question iteration code broke", font=("calibri", 25), key="-BUTTON2-", button_color=('#000000','#42FAE3') , size=(40,5) )],
 [sg.Button("If you're seeing this, the question iteration code broke", key="-BUTTON3-", font=("calibri", 25),button_color=('#000000','#8742FA') ,size=(40,5), ), sg.Button("If you're seeing this, the question iteration code broke", font=("calibri", 25), key="-BUTTON4-", size=(40,5), button_color=('#000000','#FA4259') )],
-[sg.Text("", key="-FOUR_QUESTION_TRIVIA-",font=("calibri"),size=(80,25)))],
+[sg.Text("", key="-FOUR_QUESTION_TRIVIA-",font=("calibri"),size=(80,25))],
 
 ]
 true_or_false = [
@@ -136,7 +136,8 @@ def load():
     window["-TRUE_FALSE_TRIVIA-"].update("")    
     
     if current_question["type"] == "four":
-        window["-FOUR_QUESTION_TEXT-"].update(current_question["question_text"]) """Update the questions text"""
+        window["-FOUR_QUESTION_TEXT-"].update(current_question["question_text"])
+        """Update the questions text"""
         for i, answer in enumerate(answers):
             window[f"-BUTTON{i+1}-"].update(answer)
         window["-MENU-"].update(visible=False)
@@ -159,107 +160,58 @@ def on_action(chosen):
         result = "Correct!"
     else:
         result = f"Incorrect! The answer was: {current_question['true answer']}"
-        Save()
+        save()
         exit()
-    trivia = ########################
-while running == True:
-    event, values = window.read()
-    if event == answers[0]:
-        if answers[0] == current_question["true answer"]:
-            window["-FOUR_QUESTION-"].update("Correct.")
-            window["-TRUE_FALSE-"].update("Correct.")
-            correct_awnsers+=1
-            was_last_awnser_correct=True
-        else:
-            window["-FOUR_QUESTION-"].update("incorrect.")
-            window["-TRUE_FALSE-"].update("incorrect.")
-            was_last_awnser_correct=False
-    elif event == answers[1]:
-        if answers[1] == current_question["true answer"]:
-            window["-TRUE_FALSE-"].update("Correct.")
-            window["-FOUR_QUESTION-"].update("Correct.")
-            correct_awnsers+=1
-            was_last_awnser_correct=True
-        else:
-            window["-FOUR_QUESTION-"].update("incorrect.")
-            window["-TRUE_FALSE-"].update("incorrect.")
-            was_last_awnser_correct=False
-    elif event == answers[2]:
-        if answers[2] == current_question["true answer"]:
-            window["-FOUR_QUESTION-"].update("Correct.")
-            correct_awnsers+=1
-            was_last_awnser_correct=True
-        else:
-            window["-FOUR_QUESTION-"].update("incorrect.")
-            was_last_awnser_correct=False
-    elif event == answers[3]:
-        if answers[3] == current_question["true answer"]:
-            window["-FOUR_QUESTION-"].update("Correct.")
-            correct_awnsers+=1
-            was_last_awnser_correct=True
-        else:
-            window["-FOUR_QUESTION-"].update("incorrect.")
-            was_last_awnser_correct=False
-    if event == sg.WIN_CLOSED:
-        break
+    trivia = f"{result}\n\n{current_question['trivia']}"
+    if current_question["type"] == "four":
+        window["-FOUR_QUESTION_TRIVIA-"].update(trivia)
+    else:
+        window["-TRUE_FALSE_TRIVIA-"].update(trivia)
 
-
+        
 ########################################################################################################################################################################################################
 running=True
-playing = False
-    if event == "Play Quiz": #####
+waiting = False
+
+while running == True:
+    event, values = window.read()
+    if event == sg.WIN_CLOSED or event == "leave":
+        save()
+        exit()
+    elif event == "Play Quiz": #####
         will_iterate=1
+        correct_answers = 0
+        waiting_for_next = False
+        load()
         print(will_iterate)
-        # Update the text when button is clicked
-        window["-FOUR_QUESTION-"].update("This  make it play.")
-        for question in questions.keys():
-            print(question)
-            update_quiz()
-            if was_last_awnser_correct is None:
-                print(was_last_awnser_correct)
-                print(current_question["type"])
-                if current_question["type"] == "four":
-                    print(current_question["type"]+"Four question type")
-                    window["-MENU-"].update(visible=False)
-                    window["-FOUR_QUESTION-"].update(visible=True)
-                elif current_question["type"] == "true_or_false":
-                    print(current_question["type"]+"True or false question type")
-                    window["-MENU-"].update(visible=False)
-                    window["-TRUE_FALSE-"].update(visible=True)
-
-
-                    
-            elif was_last_awnser_correct==True:
-                correct_awnsers += 1
-                if current_question["type"] == "four":
-                    window["-TRUE_FALSE-"].update(visible=False)
-                    window["-FOUR_QUESTION-"].update(visible=True)
-                elif current_question["type"] == "true_or_false":
-                    window["-TRUE_FALSE-"].update(visible=True)
-                    window["-FOUR_QUESTION-"].update(visible=False)
-
-
-                    
-            elif was_last_awnser_correct==False:
-                print("Wrong answer")
-                exit()
-                    
-                will_iterate=will_iterate+1
-            else:
-                pass
-
-
-            
     elif event == "Score":
-        for possible_answer in answers:
-            sg.easy_print("This displays the list of awnsers", possible_answer)
-        window["-MENU-"].update("This should show your score.")
-        window["-FOUR_QUESTION-"].update("If this is shown, then the button position of the first shown window ovewrites all others")
-    elif event == "leave":
-        window["-MENU-"].update("this should make you leave.")
+        load_score()
+    elif event in ["-BUTTON1-", "-BUTTON2-", "-BUTTON3-", "-BUTTON4-"] and not waiting_for_next:
+        index = int(event[-2]) -1
+        handle_answer(answers[index])
+        waiting = True
 
-##    correct_anwsers = 0
-##    wrong_awnsers = 0
+    elif event in ["-TRUE_OR_FALSE_BUTTON1-", "-TRUE_OR_FALSE_BUTTON2-"] and not waiting:
+        if event == "-TRUE_OR_FALSE_BUTTON1-":
+            index = 0
+        else:
+            index = 1
+        chosen = answers[index]
+        handle_answer(chosen)
+        waiting = True
 
-    while playing == True:
-        pass
+    elif waiting == True:
+        will_iterate += 1
+        waiting_for_next = False
+        if will_iterate <= len(questions):
+            load()
+        else:
+            window["-FOUR_QUESTION-"].update(visible=False)
+            window["-TRUE_FALSE-"].update(visible=False)
+            window["-MENU-"].update(visible=True)
+            sg.popup(f"Quiz complete! You got {correct_answers} out of {len(questions)} correct!", title="Final Score")
+                    
+
+
+
+exit()
