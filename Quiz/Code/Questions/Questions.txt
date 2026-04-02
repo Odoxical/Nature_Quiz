@@ -1,5 +1,0 @@
-Q: Which kind Animal Has the most dangerous venom
-a1) Snake
-A2) Spider
-a3) Jellyfish
-a4) Snail
