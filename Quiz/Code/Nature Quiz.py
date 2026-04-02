@@ -1,6 +1,8 @@
 import FreeSimpleGUI as sg
 import json
+import os
 ########################################################################################################################################################################################################
+
 def save(correct_answers,historical_correct_answers):
     try:
         if correct_answers>historical_correct_answers:
@@ -25,17 +27,23 @@ def load_score():
             print("But nothing came")
 ########################################################################################################################################################################################################
 questions = {}
+
+base_dir = os.path.dirname(os.path.abspath(__file__))
+questions_path = os.path.join(base_dir, "questions.json")
+
+
 try:
-    with open("questions.json","r") as file:
+    with open(questions_path,"r") as file:
         raw_data = json.load(file)
         for key, value in raw_data.items():
             questions[int(key)] = value
             
 except json.JSONDecodeError:
     sg.popup(f"I am sorry, but the list of questions has been corrupted", title="Final Score", background_color='#0e3947')
+    
 except FileNotFoundError:
+    questions=emergency_test_questions
     sg.popup(f"I am sorry but something has gone very wrong. the list of questions cannot be found", title="Final Score", background_color='#0e3947')
-
 
 ########################################################################################################################################################################################################
 will_iterate = 1
