@@ -4,3 +4,11 @@ Only non-intuitive part of the external library. A GUI, or graphical user interf
 interact with the poduct in more ways then just typing. They allow for buttons, sliders animations, and many more things.
 However due to my Burgeoning knolledge of codeing GUI, I have only included buttons into my project. 
 2) External Librarys
+I utilise Free simple Gui to generate a gui. That is the only external library I use. External Libraries are python libraries
+that are not stored in each and every installation of python.
+3) Data Storage
+I read and write to a .txt file to save the high score, and write to a .JSON file to store the questions. I use  different
+files because each one has different strengths. .txt files are more resistant to corruption and take up less storage space,
+but .JSON files are better for storring complex data, like nested dictionarys. I store the nested dictionart that is my
+Questions in a json file so that my code is fast to scroll through, and its easier to conduct testing and add new questions
+when it's its own file.
