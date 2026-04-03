@@ -3,24 +3,28 @@ import json
 import os
 ########################################################################################################################################################################################################
 
+base_dir = os.path.dirname(os.path.abspath(__file__))
+questions_path = os.path.join(base_dir, "questions.json")
+score_path = os.path.join(base_dir, "highscore.txt")
+
 def save(correct_answers,historical_correct_answers):
     try:
         if correct_answers>historical_correct_answers:
             historical_correct_answers=correct_answers
-            with open("highscore.txt","w") as file:
+            with open(score_path,"w") as file:
                 file.write(str(historical_correct_answers))
             return historical_correct_answers
         else:
             pass
     except TypeError:
         historical_correct_answers=correct_answers
-        with open("highscore.txt","w") as file:
+        with open(score_path,"w") as file:
             file.write(str(historical_correct_answers))
         return historical_correct_answers
     
 def load_score():
     try:
-        with open("highscore.txt","r") as file:
+        with open(score_path,"r") as file:
             return int(file.read())
     except FileNotFoundError:
             return 0
@@ -28,8 +32,6 @@ def load_score():
 ########################################################################################################################################################################################################
 questions = {}
 
-base_dir = os.path.dirname(os.path.abspath(__file__))
-questions_path = os.path.join(base_dir, "questions.json")
 
 
 try:
@@ -42,7 +44,6 @@ except json.JSONDecodeError:
     sg.popup(f"I am sorry, but the list of questions has been corrupted", title="Final Score", background_color='#0e3947')
     
 except FileNotFoundError:
-    questions=emergency_test_questions
     sg.popup(f"I am sorry but something has gone very wrong. the list of questions cannot be found", title="Final Score", background_color='#0e3947')
 
 ########################################################################################################################################################################################################
@@ -53,6 +54,10 @@ answers = current_question["answers"]
 historical_correct_answers=load_score()
 correct_answers=0
 load_score()
+
+if historical_correct_answers < 0 or historical_correct_answers > len(questions):
+    save(0,-1)
+    load_score()    
 
 menu = [
 [sg.Button("Play Quiz", font=("calibri",25, "bold") ), 
@@ -67,7 +72,8 @@ four_buttons = [
 sg.Button("If you're seeing this, the question iteration code broke", font=("calibri", 25), key="-BUTTON2-", button_color=('#000000','#42FAE3') , size=(40,5), border_width = (0))],
 [sg.Button("If you're seeing this, the question iteration code broke", key="-BUTTON3-", font=("calibri", 25),button_color=('#000000','#8742FA') ,size=(40,5), border_width = (0)),
 sg.Button("If you're seeing this, the question iteration code broke", font=("calibri", 25), key="-BUTTON4-", size=(40,5), button_color=('#000000','#FA4259'), border_width = (0))],
-[sg.Text("", key="-FOUR_QUESTION_TRIVIA-",font=("calibri"),size=(80,12), background_color='#0e3947')],
+[sg.Text("", key="-FOUR_QUESTION_TRIVIA-",font=("calibri"),size=(85,12), background_color='#0e3947'),
+ sg.Button("Next question", font =("calibri", 25), key = "-NEXT-", size=(40,5), visible = False)]
 
 ]
 true_or_false = [
@@ -95,7 +101,8 @@ def load():
     answers = current_question["answers"]
 
     window["-FOUR_QUESTION_TRIVIA-"].update("")
-    window["-TRUE_FALSE_TRIVIA-"].update("")    
+    window["-TRUE_FALSE_TRIVIA-"].update("")
+    window["-NEXT-"].update(visible=False)
     
     if current_question["type"] == "four":
         window["-FOUR_QUESTION_TEXT-"].update(current_question["question_text"])
@@ -104,7 +111,6 @@ def load():
             window[f"-BUTTON{i+1}-"].update(answer)
         window["-MENU-"].update(visible=False)
         window["-TRUE_FALSE-"].update(visible=False)
-        window.move_to_center()
         window["-FOUR_QUESTION-"].update(visible=True)
     else:
         window["-TRUE_FALSE_TEXT-"].update(current_question["question_text"])
@@ -112,13 +118,15 @@ def load():
         window["-TRUE_OR_FALSE_BUTTON2-"].update(answers[1])
         window["-MENU-"].update(visible=False)
         window["-FOUR_QUESTION-"].update(visible=False)
-        window.move_to_center()
         window["-TRUE_FALSE-"].update(visible=True)
+    window.refresh()
+    window.move_to_center()
 
 def on_action(chosen):
     """check whether answer was correct, show the trivia, advance the quiz, or end the quiz"""
     global will_iterate, correct_answers
-
+    window["-NEXT-"].update(visible=True)
+    
     if chosen == current_question["true answer"]:
         correct_answers += 1
         result = "Correct!"
@@ -130,6 +138,8 @@ def on_action(chosen):
         window["-FOUR_QUESTION_TRIVIA-"].update(trivia)
     else:
         window["-TRUE_FALSE_TRIVIA-"].update(trivia)
+        window["-TRUE_OR_FALSE_BUTTON1-"].update("Press me to continue")
+        window["-TRUE_OR_FALSE_BUTTON2-"].update("You could also press me to continue")
 
         
 ########################################################################################################################################################################################################

@@ -1,0 +1,6 @@
+1) Graphical user interface
+I use Free Simple GUI to generate a GUI. It realy is free and simple. [] control where a line starts and ends. That is the
+Only non-intuitive part of the external library. A GUI, or graphical user interface, is something that allows the user to
+interact with the poduct in more ways then just typing. They allow for buttons, sliders animations, and many more things.
+However due to my Burgeoning knolledge of codeing GUI, I have only included buttons into my project. 
+2) External Librarys

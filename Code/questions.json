@@ -1,8 +1,8 @@
 {"1":{"question_text":"Which of these animals has the most lethal venom",
    "type":"four",
-   "answers":["Snake","Spider","JellyFish","Snail"],
+   "answers":["Snake","Spider","Jellyfish","Snail"],
    "true answer":"Snail",
-   "trivia":"The Neurotoxin of the sydney tunnelweb will kill you withen hours, the inland taipans potent mix of neurotoxin, hemotoxin, and mytotoxin will kill you within the hour, and the box jellyfishs toxins can kill you in less than five minutes. But What can be guarenteed, is that they all have potent antivenoms that have been developed. What has neither a antivenom nor a antidote is Conus geographus, otherwise known as the geography cone, or the cone snail. its conotoxin laced harpoon will kill you within 5 hours, if the fact that it is an aquatic creature with potent full body paralysis doesnt kill you first."
+   "trivia":"The Neurotoxin of the sydney tunnelweb will kill you within hours, the inland taipan's potent mix of neurotoxin, hemotoxin, and mytotoxin will kill you within the hour, and the box jellyfish's toxins can kill you in less than five minutes. But What can be guarenteed, is that they all have potent antivenoms that have been developed. What has neither a antivenom nor a antidote is Conus geographus, otherwise known as the geography cone, or the cone snail. its conotoxin laced harpoon WILL kill you within 5 hours, if the fact that it is an aquatic creature that inflicts potent full body paralysis doesnt kill you first."
                 },
 "2":{"question_text":"Which plant is responsible for the most plant-related poisonings worldwide",
    "type":"four",
@@ -23,7 +23,7 @@
    "type":"true_or_false",
    "answers":["True","False"],
    "true answer":"False",
-   "trivia":"There is a plant, colloquially called the dynamite tree, that occasionally releases apendages that relase particulates in all directions at 300+ Kph. \n This however, is not a self defence strategy, but a strategy to spread its seed. These apendages are seed pods."
+   "trivia":"There is a plant, colloquially called the dynamite tree, that occasionally releases apendages that relase particulates in all directions at 300+ Kph. This however, is not a self defence strategy, \nbut a strategy to spread its seed. These apendages are seed pods. There is also a plant known as the jumping/spitting cactus, or Cylindropuntia fulgida \nwhich ejects barbed spikey balls at the slightest vibration. This too, is a method of propagation."
    },
 
 "5":{"question_text":"Which fish is considered the most venomous fish in the world",
@@ -37,14 +37,14 @@
    "type":"four",
    "answers":["Castor Bean Plant","Hemlock","Yew Tree","Monkshood"],
    "true answer":"Castor Bean Plant",
-   "trivia":"The castor bean plant produces ricin inside its seeds. Ricin is a protein toxin that stops cells from producing essential proteins, causing organ failure. Just a tiny amount can be lethal if inhaled, ingested, or injected. Despite this, the plant is widely grown because the seeds are also used to make castor oil once the toxin is removed."
+   "trivia":"The castor bean plant produces ricin inside its seeds. Ricin is a protein toxin that stops cells from producing essential proteins, causing organ failure. Just a tiny amount can be lethal if inhaled, ingested, or injected. Despite this, the plant is widely grown because once the toxin is removed, the seeds can be used to make castor oil."
    },
 
 "7": {
     "question_text": "There is no known animal that defends itself by exploding.",
     "type": "true_or_false",
     "answers": ["True", "False"],
-    "true answer": "True",
+    "true answer": "False",
     "trivia": "There is a species of bug known as Neocapritermes taracua, or the Kamikaze Termite. They store hydroquinones and an enzyme called laccase BP76 in cuticular pouches which, when the colony is threatened and the termite is old and near \n the threat, will rupture, causing a highly toxic explosion which, while inconclusivly toxic to humans, is incredibly lethal to ants. There is also a species of ant that practices autothysis."
   },
 
@@ -61,7 +61,7 @@
     "type": "four",
     "answers": ["Australian Ironwood", "Dragon's Blood", "Strangler Fig", "The Manchineel Tree"],
     "true answer": "The Manchineel Tree",
-    "trivia": "The Manchineel tree, also known as the tree of death, is deadly in every single piece. This is due to its sap, which causes second and third degree burns, intense pain, blisters, dermatitis, blindness, lung damage, and more. This sap is found in every part of the tree, which is even worse because this tree looks no different than any other tropical american tree. This tree is also illegal to cut down because it is endangered. The Strangler Fig can only strangle other trees. It is harmless to animal life. The Dragon's Blood tree has thick, crimson sap, and berries that are commonly described as fleshy. Other than giving your dog depression, it is completely harmless and was even used in medicine. Other than being poisonous when eaten or burned, because its Australia, the Australian Ironwood tree is completely harmless."
+    "trivia": "The Manchineel tree, also known as the tree of death, is deadly single piece everywhere . This is due to its sap, which causes second and third degree burns, intense pain, blisters, dermatitis, blindness, lung damage, and more. This sap is found in every part of the tree, which is even worse because this tree looks no different than any other tropical american tree. This tree is also illegal to cut down because it is endangered. The Strangler Fig can only strangle other trees. It is harmless to animal life. The Dragon's Blood tree has thick, crimson sap, and berries that are commonly described as fleshy. Other than giving your dog depression, it is completely harmless and was even used in medicine. Other than being poisonous when eaten or burned, because its Australia, the Australian Ironwood tree is completely harmless."
   },
 "10": {
     "question_text": "There is a tree known as the Gympie-Gympie tree, which has a leaf that someone once used as toilet paper.",
@@ -76,7 +76,7 @@
     "type": "true_or_false",
     "answers": ["True", "False"],
     "true answer": "True",
-    "trivia": "Horned lizards (genus Phrynosoma) practice a defense called ocular autohemorrhaging. By constricting specific blood vessels leaving their head, they build up pressure until blood vessels in their eyelids rupture, launching a stream of blood up to five feet \n at a threat. The blood contains chemical compounds that are specifically and intensely repulsive to canines, like coyotes and wolves. The lizard loses up to a third of its total blood supply in a single defense and can repeat the trick \n multiple times before needing to recover."
+    "trivia": "Horned lizards (genus Phrynosoma) practice a defense called ocular autohemorrhaging. By constricting specific blood vessels leaving their head, they build up pressure until blood vessels in their eyelids rupture, launching a stream of blood \nup to five feet at a threat. The blood contains chemical compounds that are specifically and intensely repulsive to canines, like coyotes and wolves. The lizard loses up to a third of its total blood supply in a single defense and can repeat the \ntrick multiple times before needing to recover."
   },
 
 "12": {
